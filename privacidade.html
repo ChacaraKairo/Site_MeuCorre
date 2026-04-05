@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Política de Privacidade - MeuCorre</title>
+
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      .privacy-container {
+        max-width: 800px;
+        margin: 80px auto;
+        padding: 40px;
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 24px;
+      }
+      .privacy-container h1 {
+        color: var(--primary);
+        margin-bottom: 24px;
+        font-size: 32px;
+      }
+      .privacy-container h2 {
+        margin-top: 32px;
+        margin-bottom: 16px;
+        font-size: 20px;
+        color: #fff;
+      }
+      .privacy-container p,
+      .privacy-container ul {
+        color: var(--text-muted);
+        margin-bottom: 16px;
+        line-height: 1.8;
+        font-size: 15px;
+      }
+      .privacy-container ul {
+        padding-left: 24px;
+      }
+      .privacy-container li {
+        margin-bottom: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="container">
+      <a href="index.html" class="logo-container">
+        <div class="logo">MEUCORRE<span>.</span></div>
+      </a>
+      <a href="index.html" class="btn-secondary"
+        >Voltar ao Início</a
+      >
+    </nav>
+
+    <main class="container">
+      <div class="privacy-container">
+        <h1>Política de Privacidade</h1>
+        <p>
+          <strong>Última atualização:</strong>
+          <span id="dataAtual"></span>
+        </p>
+
+        <p>
+          A sua privacidade é fundamental para nós. Esta
+          Política de Privacidade descreve como o aplicativo
+          <strong>MeuCorre</strong> recolhe, utiliza e
+          protege as suas informações.
+        </p>
+
+        <h2>1. Informações que Recolhemos</h2>
+        <p>
+          O MeuCorre foi desenhado para respeitar a sua
+          privacidade. Recolhemos apenas os dados
+          estritamente necessários para o funcionamento do
+          aplicativo:
+        </p>
+        <ul>
+          <li>
+            <strong>Dados Inseridos por Si:</strong>
+            Informações sobre corridas, ganhos, gastos com
+            manutenção e dados do veículo.
+          </li>
+          <li>
+            <strong>Permissões do Dispositivo:</strong> O
+            aplicativo pode solicitar acesso à câmara ou
+            galeria exclusivamente para anexar faturas ou
+            fotos de manutenção, caso o utilizador decida
+            utilizar essa funcionalidade.
+          </li>
+        </ul>
+
+        <h2>2. Onde os Seus Dados Ficam Guardados</h2>
+        <p>
+          Os seus dados financeiros e de operação (Balanço
+          Geral, Fluxo de Caixa, Histórico de Corridas) são
+          guardados de forma segura. Não vendemos, alugamos
+          ou partilhamos os seus dados financeiros com
+          terceiros para fins publicitários ou de marketing.
+        </p>
+
+        <h2>3. Uso das Informações</h2>
+        <p>
+          Utilizamos os dados recolhidos exclusivamente
+          para:
+        </p>
+        <ul>
+          <li>
+            Fornecer os cálculos de Índice por KM (IKM) e
+            lucros em tempo real.
+          </li>
+          <li>
+            Gerar relatórios de desempenho e avisos de
+            manutenção preventiva.
+          </li>
+          <li>
+            Melhorar o desempenho do aplicativo e corrigir
+            erros (bugs).
+          </li>
+        </ul>
+
+        <h2>4. Partilha de Dados</h2>
+        <p>
+          O MeuCorre não partilha as suas informações
+          pessoais ou financeiras com empresas externas.
+          Informações agregadas e totalmente anónimas
+          poderão ser usadas apenas para estatísticas
+          internas de melhoria do aplicativo.
+        </p>
+
+        <h2>5. Os Seus Direitos</h2>
+        <p>
+          Você tem o controlo total sobre as suas
+          informações. Pode, a qualquer momento, editar,
+          apagar registos ou excluir todos os dados
+          diretamente através das configurações do
+          aplicativo.
+        </p>
+
+        <h2>6. Contacto</h2>
+        <p>
+          Se tiver alguma dúvida sobre esta Política de
+          Privacidade, entre em contacto com a nossa equipa
+          de suporte através do e-mail:
+          <strong>suporte@meucorre.com</strong>
+          <em>(substitua pelo seu e-mail real)</em>.
+        </p>
+      </div>
+    </main>
+
+    <footer>
+      <p>
+        © <span id="anoAtual"></span> MeuCorre. Todos os
+        direitos reservados.
+      </p>
+    </footer>
+
+    <script>
+      document.getElementById('anoAtual').textContent =
+        new Date().getFullYear();
+
+      // Formatar a data atual para "Última atualização"
+      const data = new Date();
+      const opcoes = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      };
+      document.getElementById('dataAtual').textContent =
+        data.toLocaleDateString('pt-PT', opcoes);
+    </script>
+  </body>
+</html>

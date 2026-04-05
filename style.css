@@ -1,0 +1,543 @@
+/* ================= CSS PURO ================= */
+:root {
+  --bg-color: #0a0a0a;
+  --card-bg: #161616;
+  --card-light: #111111;
+  --primary: #00c853;
+  --primary-hover: #00e676;
+  --text-main: #ffffff;
+  --text-muted: #888888;
+  --border-color: #222222;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: var(--primary);
+  color: #000;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===== NAVBAR ===== */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  height: 60px; /* Mantém a barra de navegação no tamanho padrão */
+  position: relative; /* Necessário para o z-index funcionar */
+  z-index: 100; /* Garante que a logo que vaza fique por cima da secção abaixo */
+}
+.logo-header {
+  height: 220px; /* Deixa a logo bem maior do que a barra de navegação */
+  width: auto;
+  transform: translateY(
+    20px
+  ); /* Empurra a logo propositalmente para baixo do header */
+}
+.logo {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  color: var(--primary);
+}
+.logo span {
+  color: var(--text-main);
+}
+
+/* BOTOES PLAY STORE */
+.btn-playstore-mini {
+  background-color: var(--primary);
+  color: #0a0a0a;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+.btn-playstore-mini:hover {
+  background-color: var(--primary-hover);
+  transform: scale(1.05);
+}
+.btn-playstore-mini i {
+  font-size: 20px;
+}
+
+.btn-playstore {
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 10px 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.3s ease;
+}
+.btn-playstore:hover {
+  background-color: #111;
+  border-color: #555;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+.btn-playstore i {
+  font-size: 32px;
+  color: #fff;
+}
+.btn-texts {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.btn-texts .small-text {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #aaa;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.btn-texts .big-text {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+.btn-playstore.large {
+  padding: 14px 32px;
+  border-radius: 16px;
+}
+.btn-playstore.large i {
+  font-size: 40px;
+}
+.btn-playstore.large .btn-texts .small-text {
+  font-size: 12px;
+}
+.btn-playstore.large .btn-texts .big-text {
+  font-size: 24px;
+}
+
+/* ===== HERO SECTION (SPLIT LAYOUT) ===== */
+.hero {
+  padding: 80px 0 60px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-content {
+  text-align: left;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(0, 200, 83, 0.1);
+  border: 1px solid rgba(0, 200, 83, 0.2);
+  color: var(--primary);
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-size: 56px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.text-gradient {
+  background: linear-gradient(
+    90deg,
+    var(--primary),
+    var(--primary-hover)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero p {
+  font-size: 18px;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  margin-bottom: 24px;
+}
+
+.trust-indicators {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.stars {
+  color: #f59e0b;
+  font-size: 20px;
+  display: flex;
+  gap: 4px;
+}
+.trust-indicators p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0;
+}
+.trust-indicators strong {
+  color: #fff;
+}
+
+/* MOCKUP DO DISPOSITIVO */
+.hero-image {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.phone-mockup {
+  width: 280px;
+  height: 580px;
+  background-color: var(--card-bg);
+  border: 12px solid #222;
+  border-radius: 40px;
+  position: relative;
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 2px #333;
+  overflow: hidden;
+  transform: rotate(2deg);
+  transition: transform 0.5s ease;
+}
+.phone-mockup:hover {
+  transform: rotate(0deg) translateY(-10px);
+}
+
+.phone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 24px;
+  background-color: #222;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  z-index: 10;
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #111, #000);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+}
+
+.phone-app-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 24px;
+  margin-bottom: 40px;
+  box-shadow: 0 10px 20px rgba(0, 200, 83, 0.2);
+}
+
+.mockup-ui {
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mockup-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.mockup-card i {
+  font-size: 24px;
+}
+.mockup-card.green i {
+  color: var(--primary);
+}
+.mockup-card.orange i {
+  color: #f97316;
+}
+.mockup-card small {
+  display: block;
+  font-size: 10px;
+  color: #888;
+  text-transform: uppercase;
+}
+.mockup-card strong {
+  display: block;
+  font-size: 16px;
+  color: #fff;
+}
+
+.ux-break {
+  height: 60px;
+  background: linear-gradient(
+    to bottom,
+    var(--bg-color),
+    var(--card-light)
+  );
+}
+
+/* ===== PROBLEMAS ===== */
+.problems {
+  background-color: var(--card-light);
+  padding: 80px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.card {
+  background-color: var(--bg-color);
+  padding: 32px;
+  border-radius: 24px;
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+.icon-red {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+.icon-green {
+  background: rgba(0, 200, 83, 0.1);
+  color: var(--primary);
+}
+.icon-orange {
+  background: rgba(249, 115, 22, 0.1);
+  color: #f97316;
+}
+
+.card h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+.card p {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* ===== FUNCIONALIDADES (Adicionado!) ===== */
+.features {
+  padding: 100px 0;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.features-text h2 {
+  font-size: 40px;
+  font-weight: 900;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+.features-list {
+  list-style: none;
+  margin-top: 24px;
+}
+.features-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.features-list i {
+  color: var(--primary);
+  font-size: 20px;
+}
+
+.feature-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.feature-app-box {
+  background-color: var(--card-bg);
+  padding: 40px;
+  border-radius: 32px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+.feature-app-box::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(
+    to top,
+    var(--bg-color),
+    transparent
+  );
+}
+.logo-app-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: 24px;
+  object-fit: cover;
+}
+
+/* ===== CTA FINAL ===== */
+.cta-section {
+  padding: 100px 0;
+  text-align: center;
+}
+.cta-box {
+  background-color: var(--card-bg);
+  border: 1px solid #333;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 60px 40px;
+  border-radius: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+.cta-box h2 {
+  font-size: 36px;
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+.cta-box p {
+  color: var(--text-muted);
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.secure-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  color: #888;
+  font-size: 12px;
+}
+.secure-badge i {
+  color: var(--primary);
+  font-size: 16px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  border-top: 1px solid var(--border-color);
+  padding: 40px 0;
+  text-align: center;
+  color: #555;
+  font-size: 14px;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 60px;
+    padding-top: 40px;
+  }
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero h1 {
+    font-size: 44px;
+  }
+  .trust-indicators {
+    flex-direction: column;
+  }
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Ajustes da Funcionalidade para Telemóvel */
+  .features-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .features-list li {
+    justify-content: center;
+  }
+  .feature-app-box {
+    padding: 24px;
+  }
+  .logo-app-icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .cta-box {
+    padding: 40px 20px;
+  }
+  .cta-box h2 {
+    font-size: 28px;
+  }
+}
