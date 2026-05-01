@@ -1,331 +1,414 @@
 <!doctype html>
-<html lang="pt-PT">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
+      name="description"
+      content="KORRE é o app para motoristas, entregadores e profissionais autônomos controlarem ganhos, custos, manutenção e lucro real de cada corrida."
     />
-    <title>MeuCorre - O App Definitivo do Motoboy</title>
+    <meta name="theme-color" content="#0A0A0A" />
+    <title>KORRE - Gestão inteligente para motoristas e entregadores</title>
 
+    <link rel="icon" href="assets/images/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/images/icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-    />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap"
       rel="stylesheet"
     />
-
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <nav class="container">
-      <a
-        href="https://site-koru-company.vercel.app"
-        target="_blank"
-        title="Um produto Koru Company"
-        class="logo-container"
-      >
-        <img
-          src="logo_sem_fundo.png"
-          alt="MeuCorre Logo"
-          class="logo-header"
-          onerror="
-            this.style.display = 'none';
-            this.nextElementSibling.style.display = 'block';
-          "
-        />
-
-        <div class="logo" style="display: none">
-          <img
-            src="logo.png"
-            alt="MeuCorre Logo"
-            class="logo-header"
-          />
-        </div>
-      </a>
-
-      <a
-        href="https://play.google.com/store/apps/details?id=com.chacarakairo.meucorre"
-        target="_blank"
-        class="btn-playstore-mini"
-      >
-        <i class="ph-fill ph-google-play-logo"></i> Download
-      </a>
-    </nav>
-
-    <header class="hero container reveal">
-      <div class="hero-content">
-        <div class="badge">
-          <i class="ph-fill ph-motorcycle"></i> Feito de
-          Motorista para Motorista
-        </div>
-
-        <h1>
-          O Painel de Controlo <br />
-          <span class="text-gradient"
-            >da sua Operação.</span
-          >
-        </h1>
-
-        <p>
-          Transforme o seu telemóvel no seu melhor aliado na
-          pista. O único app que calcula o lucro da corrida
-          antes de você a aceitar e avisa a hora exata da
-          manutenção.
-        </p>
-
-        <div class="hero-actions">
-          <a
-            href="https://play.google.com/store/apps/details?id=com.chacarakairo.meucorre"
-            target="_blank"
-            class="btn-playstore large"
-          >
-            <i class="ph-fill ph-google-play-logo"></i>
-            <div class="btn-texts">
-              <span class="small-text">Disponível no</span>
-              <span class="big-text">Google Play</span>
-            </div>
-          </a>
-        </div>
-
-        <div class="trust-indicators">
-          <div class="stars">
-            <i class="ph-fill ph-star"></i>
-            <i class="ph-fill ph-star"></i>
-            <i class="ph-fill ph-star"></i>
-            <i class="ph-fill ph-star"></i>
-            <i class="ph-fill ph-star"></i>
-          </div>
-          <p>
-            <strong>4.9/5</strong> estrelas. Junte-se a quem
-            já roda com inteligência.
-          </p>
-        </div>
-      </div>
-
-      <div class="hero-image">
-        <div class="phone-mockup">
-          <div class="phone-notch"></div>
-          <div class="phone-screen">
-            <img
-              src="logo_com_fundo_cinza.png"
-              alt="Interface MeuCorre"
-              class="phone-app-logo"
-              onerror="this.style.display = 'none'"
-            />
-
-            <div class="mockup-ui">
-              <div class="mockup-card green">
-                <i class="ph-bold ph-trend-up"></i>
-                <div>
-                  <small>Lucro da Corrida</small>
-                  <strong>R$ 15,40</strong>
-                </div>
-              </div>
-              <div class="mockup-card orange">
-                <i class="ph-bold ph-wrench"></i>
-                <div>
-                  <small>Manutenção</small>
-                  <strong>Trocar Óleo</strong>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <div class="ux-break"></div>
-
-    <section class="problems">
-      <div class="container grid-3 reveal">
-        <div class="card">
-          <div class="icon-box icon-red">
-            <i class="ph-bold ph-gas-pump"></i>
-          </div>
-          <h3>A pagar para rodar?</h3>
-          <p>
-            Aceitar qualquer pedido faz o lucro evaporar no
-            depósito de combustível. O nosso motor IKM
-            avalia a rentabilidade de cada corrida em 2
-            segundos.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="icon-box icon-orange">
-            <i class="ph-bold ph-wrench"></i>
-          </div>
-          <h3>Manutenção esquecida</h3>
-          <p>
-            Kit de relação partido na rua? Nunca mais.
-            Registe as peças e deixe o aplicativo avisar no
-            seu telemóvel quando for a hora exata de ir à
-            oficina.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="icon-box icon-green">
-            <i class="ph-bold ph-wallet"></i>
-          </div>
-          <h3>Caixa furado</h3>
-          <p>
-            Não sabe qual app de entregas pagou mais na
-            semana? Tenha o seu Balanço Geral (DRE) e fluxo
-            de caixa calculados automaticamente de forma
-            simples.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="features container reveal">
-      <div class="features-grid">
-        <div class="feature-image-container">
-          <div class="feature-app-box">
-            <img
-              src="logo_com_fundo_cinza.png"
-              alt="Interface MeuCorre"
-              class="logo-app-icon"
-              onerror="this.style.display = 'none'"
-            />
-          </div>
-        </div>
-
-        <div class="features-text">
-          <h3
-            style="
-              color: var(--primary);
-              font-size: 24px;
-              margin-bottom: 16px;
-            "
-          >
-            Tudo na sua mão
-          </h3>
-          <h2>Pare de usar blocos de notas confusos.</h2>
-          <p
-            style="
-              color: var(--text-muted);
-              margin-bottom: 24px;
-            "
-          >
-            O MeuCorre centraliza toda a burocracia do seu
-            trabalho para que você possa focar no que
-            importa: rodar com segurança e dinheiro no
-            bolso.
-          </p>
-
-          <ul class="features-list">
-            <li>
-              <i class="ph-fill ph-check-circle"></i>
-              <strong>Calculadora IKM:</strong> Calcule o
-              Índice por KM e lucro em tempo real.
-            </li>
-            <li>
-              <i class="ph-fill ph-check-circle"></i>
-              <strong>Garagem Digital:</strong> Histórico
-              completo de peças e manutenções do seu
-              veículo.
-            </li>
-            <li>
-              <i class="ph-fill ph-check-circle"></i>
-              <strong>DRE Simplificado:</strong> Saiba
-              exatamente a sua Margem Real de lucro no mês.
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta-section container reveal">
-      <div class="cta-box">
-        <h2>Pronto para assumir o controlo?</h2>
-        <p>
-          O aplicativo é leve, rápido e custa
-          <strong
-            >menos do que o combustível gasto numa corrida
-            que não devia ter aceitado</strong
-          >
-          (R$ 19,90 - Pagamento Único no app).
-        </p>
-
+    <header class="site-header">
+      <nav class="container nav-bar" aria-label="Navegação principal">
         <a
-          href="https://play.google.com/store/apps/details?id=com.chacarakairo.meucorre"
-          target="_blank"
-          class="btn-playstore large"
-          style="margin-top: 24px"
+          href="#topo"
+          class="brand"
+          aria-label="KORRE, voltar ao início"
         >
-          <i class="ph-fill ph-google-play-logo"></i>
-          <div class="btn-texts">
-            <span class="small-text"
-              >Baixar de forma segura no</span
-            >
-            <span class="big-text">Google Play</span>
-          </div>
+          <img src="assets/images/icon.png" alt="" class="brand-mark" />
+          <span>KORRE</span>
         </a>
 
-        <div class="secure-badge">
-          <i class="ph-fill ph-shield-check"></i>
-          <span
-            >Pagamento e Instalação geridos pelo
-            Google</span
-          >
+        <div class="nav-links" aria-label="Seções do site">
+          <a href="#para-quem">Para quem é</a>
+          <a href="#funcionalidades">Funcionalidades</a>
+          <a href="#telas">Telas</a>
+          <a href="#faq">FAQ</a>
         </div>
-      </div>
-    </section>
 
-    <footer>
-      <div style="margin-bottom: 16px">
         <a
-          href="privacidade.html"
-          style="
-            color: var(--primary);
-            font-weight: bold;
-            text-decoration: none;
-            margin-right: 24px;
-          "
-          >Política de Privacidade</a
-        >
-        <a
-          href="https://site-koru-company.vercel.app"
+          href="https://play.google.com/store/apps/details?id=com.korucompany.korre"
           target="_blank"
-          style="
-            color: var(--text-muted);
-            font-weight: 500;
-            text-decoration: none;
-          "
-          >Conheça a Koru Company</a
+          rel="noopener noreferrer"
+          class="btn-primary btn-small"
         >
+          <i class="ph-fill ph-google-play-logo"></i>
+          Baixar
+        </a>
+      </nav>
+    </header>
+
+    <main id="topo">
+      <section class="hero container section-grid reveal">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <i class="ph-fill ph-motorcycle"></i>
+            Para quem roda, entrega e precisa fechar a conta
+          </p>
+          <h1>KORRE</h1>
+          <p class="hero-lead">
+            Controle seus ganhos, custos e corridas em um só lugar.
+          </p>
+          <p class="hero-text">
+            O app feito para motoristas, entregadores e profissionais autônomos
+            entenderem o lucro real de cada corrida antes que o dinheiro suma no
+            combustível, manutenção e despesas do dia.
+          </p>
+
+          <div class="hero-actions">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.korucompany.korre"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="store-button"
+            >
+              <i class="ph-fill ph-google-play-logo"></i>
+              <span>
+                <small>Disponível no</small>
+                Google Play
+              </span>
+            </a>
+            <a href="#funcionalidades" class="btn-secondary">
+              Ver recursos
+            </a>
+          </div>
+
+          <dl class="metric-row" aria-label="Destaques do KORRE">
+            <div>
+              <dt>Offline</dt>
+              <dd>dados locais</dd>
+            </div>
+            <div>
+              <dt>IKM</dt>
+              <dd>valor por km</dd>
+            </div>
+            <div>
+              <dt>Backup</dt>
+              <dd>exportação JSON</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="hero-visual" aria-label="Prévia visual do aplicativo">
+          <div class="phone-frame phone-frame-real">
+            <div class="phone-notch"></div>
+            <img
+              src="assets/prints/tela_dashboard.jpg"
+              alt="Dashboard do KORRE com veículo ativo, índices e acesso à calculadora"
+              class="hero-screen-img"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section id="para-quem" class="section-band">
+        <div class="container reveal">
+          <div class="section-heading">
+            <p class="eyebrow">Para quem é o KORRE</p>
+            <h2>Um painel de trabalho para quem vive de corrida.</h2>
+          </div>
+
+          <div class="audience-grid">
+            <article class="info-card">
+              <i class="ph-bold ph-motorcycle"></i>
+              <h3>Motoboys e entregadores</h3>
+              <p>
+                Registre ganhos por plataforma, custos do dia e manutenção da
+                moto com uma rotina simples.
+              </p>
+            </article>
+            <article class="info-card">
+              <i class="ph-bold ph-car-profile"></i>
+              <h3>Motoristas de app</h3>
+              <p>
+                Compare corridas, acompanhe combustível, desgaste e lucro real
+                para decidir melhor.
+              </p>
+            </article>
+            <article class="info-card">
+              <i class="ph-bold ph-briefcase"></i>
+              <h3>Autônomos na rua</h3>
+              <p>
+                Organize despesas, metas, backup e relatórios sem depender de
+                planilhas soltas.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="funcionalidades" class="container features-section reveal">
+        <div class="section-heading narrow">
+          <p class="eyebrow">Funcionalidades</p>
+          <h2>Menos achismo. Mais clareza sobre seu dinheiro.</h2>
+        </div>
+
+        <div class="feature-list">
+          <article class="feature-row">
+            <div class="feature-icon">
+              <i class="ph-bold ph-calculator"></i>
+            </div>
+            <div>
+              <h3>Calculadora KORRE</h3>
+              <p>
+                Calcule o valor ideal por quilômetro, custo por tempo e lucro
+                estimado antes de aceitar uma corrida.
+              </p>
+            </div>
+          </article>
+          <article class="feature-row">
+            <div class="feature-icon">
+              <i class="ph-bold ph-wallet"></i>
+            </div>
+            <div>
+              <h3>Painel financeiro</h3>
+              <p>
+                Acompanhe ganhos, despesas, categorias e margem real com uma
+                leitura rápida do seu desempenho.
+              </p>
+            </div>
+          </article>
+          <article class="feature-row">
+            <div class="feature-icon">
+              <i class="ph-bold ph-garage"></i>
+            </div>
+            <div>
+              <h3>Garagem e manutenção</h3>
+              <p>
+                Controle veículos, peças, revisões e alertas para não ser pego
+                de surpresa.
+              </p>
+            </div>
+          </article>
+          <article class="feature-row">
+            <div class="feature-icon">
+              <i class="ph-bold ph-shield-check"></i>
+            </div>
+            <div>
+              <h3>Dados locais e backup</h3>
+              <p>
+                O app prioriza armazenamento local e permite exportar seus dados
+                quando precisar guardar uma cópia.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="telas" class="section-band screenshots-section">
+        <div class="container reveal">
+          <div class="section-heading">
+            <p class="eyebrow">Telas do app</p>
+            <h2>Espaço preparado para os prints reais do KORRE.</h2>
+            <p>
+              Assim que os prints forem adicionados, esta seção pode exibir as
+              telas reais de dashboard, calculadora, finanças e manutenção.
+            </p>
+          </div>
+
+          <div class="screenshots-grid">
+            <article class="screen-card">
+              <figure class="screen-shot">
+                <img
+                  src="assets/prints/tela_dashboard.jpg"
+                  alt="Dashboard do KORRE com veículo, manutenção e índices financeiros"
+                  loading="lazy"
+                />
+              </figure>
+              <h3>Dashboard</h3>
+              <p>Visão central da rotina, veículo ativo e indicadores.</p>
+            </article>
+            <article class="screen-card">
+              <figure class="screen-shot">
+                <img
+                  src="assets/prints/tela_calc_combustivel.jpg"
+                  alt="Calculadora flex indicando ponto de equilíbrio entre etanol e gasolina"
+                  loading="lazy"
+                />
+              </figure>
+              <h3>Calculadora Flex</h3>
+              <p>Comparação rápida para decidir combustível com clareza.</p>
+            </article>
+            <article class="screen-card">
+              <figure class="screen-shot">
+                <img
+                  src="assets/prints/tela_cadastro_ganho.jpg"
+                  alt="Tela para anotar ganho e vincular valor ao veículo e plataforma"
+                  loading="lazy"
+                />
+              </figure>
+              <h3>Ganhos e despesas</h3>
+              <p>Registro direto por valor, veículo e categoria.</p>
+            </article>
+            <article class="screen-card">
+              <figure class="screen-shot">
+                <img
+                  src="assets/prints/tela_oficina.jpg"
+                  alt="Tela de oficina com itens de manutenção do veículo"
+                  loading="lazy"
+                />
+              </figure>
+              <h3>Manutenção</h3>
+              <p>Acompanhamento de óleo, filtros, pneus e revisões.</p>
+            </article>
+            <article class="screen-card">
+              <figure class="screen-shot">
+                <img
+                  src="assets/prints/tela_garagem.jpg"
+                  alt="Garagem com veículo cadastrado e status operacional"
+                  loading="lazy"
+                />
+              </figure>
+              <h3>Garagem</h3>
+              <p>Controle de frota, quilometragem e veículo ativo.</p>
+            </article>
+            <article class="screen-card">
+              <figure class="screen-shot">
+                <img
+                  src="assets/prints/tela_perfil.jpg"
+                  alt="Central de comando do perfil com meta financeira e configurações"
+                  loading="lazy"
+                />
+              </figure>
+              <h3>Perfil e metas</h3>
+              <p>Meta diária, configurações e exportação de dados.</p>
+            </article>
+            <article class="screen-card">
+              <figure class="screen-shot">
+                <img
+                  src="assets/prints/tela_cadastro.jpg"
+                  alt="Cadastro do usuário no KORRE com foto, e-mail, CPF e senha"
+                  loading="lazy"
+                />
+              </figure>
+              <h3>Onboarding</h3>
+              <p>Cadastro inicial do piloto e da máquina.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="container process-section reveal">
+        <div class="section-heading narrow">
+          <p class="eyebrow">Como funciona</p>
+          <h2>Da corrida ao resultado real em poucos passos.</h2>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <span>1</span>
+            <div>
+              <h3>Cadastre seu veículo</h3>
+              <p>Informe consumo, custos e dados básicos para montar sua base.</p>
+            </div>
+          </li>
+          <li>
+            <span>2</span>
+            <div>
+              <h3>Registre ganhos e despesas</h3>
+              <p>Adicione corridas, combustível, alimentação e manutenção.</p>
+            </div>
+          </li>
+          <li>
+            <span>3</span>
+            <div>
+              <h3>Veja se vale a pena</h3>
+              <p>Use os indicadores para entender margem, meta e custo real.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section id="faq" class="section-band">
+        <div class="container faq-layout reveal">
+          <div class="section-heading">
+            <p class="eyebrow">FAQ</p>
+            <h2>Perguntas rápidas antes de baixar.</h2>
+          </div>
+
+          <div class="faq-list">
+            <details>
+              <summary>O KORRE funciona sem internet?</summary>
+              <p>
+                Sim. O foco do app é organizar os dados localmente no aparelho,
+                com recursos de backup para quando você quiser guardar uma cópia.
+              </p>
+            </details>
+            <details>
+              <summary>O app substitui contador ou consultoria financeira?</summary>
+              <p>
+                Não. O KORRE ajuda na organização e nos cálculos do dia a dia,
+                mas as decisões fiscais e financeiras continuam sendo do usuário.
+              </p>
+            </details>
+            <details>
+              <summary>Para que serve a calculadora KORRE?</summary>
+              <p>
+                Ela ajuda a estimar custo por quilômetro, custo por tempo e lucro
+                de uma corrida, evitando decisões no escuro.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-section container reveal">
+        <div class="cta-box">
+          <p class="eyebrow">Comece pelo controle</p>
+          <h2>Transforme corrida em número claro.</h2>
+          <p>
+            Baixe o KORRE e acompanhe seus ganhos, custos, manutenção e metas
+            com uma visão feita para a rotina de quem está na rua.
+          </p>
+          <a
+            href="https://play.google.com/store/apps/details?id=com.korucompany.korre"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="store-button"
+          >
+            <i class="ph-fill ph-google-play-logo"></i>
+            <span>
+              <small>Baixar no</small>
+              Google Play
+            </span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <a href="#topo" class="brand footer-brand">
+          <img src="assets/images/icon.png" alt="" class="brand-mark" />
+          <span>KORRE</span>
+        </a>
+        <div class="footer-links">
+          <a href="privacidade.html">Política de Privacidade</a>
+          <a
+            href="https://site-koru-company.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Koru Company
+          </a>
+        </div>
+        <p>© <span id="anoAtual"></span> KORRE. Todos os direitos reservados.</p>
       </div>
-      <p>
-        © <span id="anoAtual"></span> MeuCorre. Desenvolvido
-        com
-        <i
-          class="ph-fill ph-heart"
-          style="color: var(--primary)"
-        ></i>
-        por
-        <a
-          href="https://site-koru-company.vercel.app"
-          target="_blank"
-          style="
-            color: #fff;
-            font-weight: 900;
-            text-decoration: none;
-          "
-          >Koru Company</a
-        >.
-      </p>
     </footer>
 
     <script src="script.js"></script>

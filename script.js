@@ -1,43 +1,34 @@
-// ================= JAVASCRIPT PURO =================
-
-// 1. Atualizar o ano dinamicamente no footer (para nunca ficar desatualizado)
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
   const anoAtualSpan = document.getElementById('anoAtual');
   if (anoAtualSpan) {
     anoAtualSpan.textContent = new Date().getFullYear();
   }
-});
 
-// 2. Efeito de Animação ao Fazer Scroll (Reveal / Fade In)
-function reveal() {
-  var reveals = document.querySelectorAll(".reveal");
+  const revealElements = document.querySelectorAll('.reveal');
 
-  for (var i = 0; i < reveals.length; i++) {
-    var windowHeight = window.innerHeight;
-    var elementTop = reveals[i].getBoundingClientRect().top;
-    var elementVisible = 100; // Distância em pixels antes do elemento aparecer
-
-    if (elementTop < windowHeight - elementVisible) {
-      reveals[i].style.opacity = 1;
-      reveals[i].style.transform = "translateY(0)";
-    }
+  if (!('IntersectionObserver' in window)) {
+    revealElements.forEach(function (element) {
+      element.classList.add('is-visible');
+    });
+    return;
   }
-}
 
-// 3. Preparar os elementos e rodar a animação logo que a página carrega
-document.addEventListener("DOMContentLoaded", function () {
-  var reveals = document.querySelectorAll(".reveal");
+  const observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.16,
+      rootMargin: '0px 0px -40px 0px',
+    },
+  );
 
-  // Define o estado inicial invisível para todos os elementos que têm a classe "reveal"
-  reveals.forEach(function (el) {
-    el.style.opacity = 0;
-    el.style.transform = "translateY(30px)";
-    el.style.transition = "all 0.8s cubic-bezier(0.5, 0, 0, 1)"; // Transição muito suave e profissional
+  revealElements.forEach(function (element) {
+    observer.observe(element);
   });
-
-  // Dispara a função uma vez para mostrar os elementos que já estão no ecrã (ex: Hero Section)
-  setTimeout(reveal, 100);
 });
-
-// 4. Ouve o evento de scroll da página para disparar a função conforme o utilizador desce
-window.addEventListener("scroll", reveal);
