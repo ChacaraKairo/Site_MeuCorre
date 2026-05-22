@@ -1,17 +1,8 @@
-/*
-  Configuracoes editaveis do site KORRE.
 
-  Como usar:
-  - Troque somente os textos dentro das aspas.
-  - Se ainda nao tiver algum link, deixe vazio: ''.
-  - WhatsApp e telefone devem ficar so com numeros nos campos Raw.
-    Exemplo Brasil/Sao Paulo: '5511999999999'.
-  - O site preenche automaticamente botoes, rodape, redes sociais e contatos.
-*/
 window.KORRE_CONFIG = {
   app: {
     name: 'KORRE',
-    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.korucompany.korre',
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=korre_app.gestao.korucompany&pcampaignid=web_share',
     appStoreUrl: '',
     officialSiteUrl: '',
   },
@@ -22,16 +13,16 @@ window.KORRE_CONFIG = {
   },
 
   contact: {
-    email: 'suporte@korucompany.com.br',
+    email: 'korucompany@gmail.com',
     phoneLabel: '',
     phoneRaw: '',
-    whatsappLabel: '',
-    whatsappRaw: '',
+    whatsappLabel: '19986011419',
+    whatsappRaw: '19986011419',
     address: '',
   },
 
   social: {
-    instagram: '',
+    instagram: 'https://www.instagram.com/korre_app/',
     facebook: '',
     tiktok: '',
     youtube: '',
