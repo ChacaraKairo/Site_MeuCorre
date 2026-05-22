@@ -14,6 +14,8 @@ experiência simples, direta e profissional.
 
 - `index.html`: landing page principal do produto.
 - `privacidade.html`: política de privacidade pública.
+- `reclamacoes.html`: canal para usuarios enviarem reclamacoes do app.
+- `api/reclamacao.js`: funcao serverless que encaminha reclamacoes ao Telegram.
 - `style.css`: identidade visual e componentes da página.
 - `script.js`: interações leves de ano dinâmico e reveal no scroll.
 
@@ -32,5 +34,21 @@ experiência simples, direta e profissional.
 
 ## Publicação
 
-O site é estático e pode ser publicado em qualquer hospedagem compatível com
-HTML, CSS e JavaScript puro.
+O site principal é estático. Para o envio de reclamacoes ao Telegram funcionar,
+a hospedagem tambem precisa executar a funcao em `api/reclamacao.js`, como na
+Vercel.
+
+Variaveis necessarias no ambiente do servidor:
+
+```env
+TELEGRAM_BOT_TOKEN=
+TELEGRAM_CHAT_ID=
+```
+
+Para testar localmente com a API funcionando:
+
+```bash
+node dev-server.js
+```
+
+Depois acesse `http://localhost:3000/reclamacoes.html`.

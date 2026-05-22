@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Canal de reclamacoes do KORRE para usuarios enviarem problemas, erros e feedback diretamente para a equipe."
+    />
+    <meta name="theme-color" content="#0A0A0A" />
+    <title>Reclamacoes - KORRE</title>
+
+    <link rel="icon" href="assets/images/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/images/icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="container nav-bar" aria-label="Navegacao principal">
+        <a href="index.html" class="brand">
+          <img src="assets/images/icon.png" alt="" class="brand-mark" />
+          <span>KORRE</span>
+        </a>
+        <a href="index.html" class="btn-secondary">Voltar ao inicio</a>
+      </nav>
+    </header>
+
+    <main class="complaint-page">
+      <section class="container complaint-layout reveal">
+        <div class="complaint-copy">
+          <p class="eyebrow">
+            <i class="ph-fill ph-warning-circle"></i>
+            Canal de reclamacoes
+          </p>
+          <h1>Conte o que aconteceu no KORRE.</h1>
+          <p>
+            Envie problemas, falhas, cobrancas indevidas, dificuldades de uso ou
+            qualquer situacao que precise da atencao da equipe.
+          </p>
+        </div>
+
+        <form class="complaint-form" data-complaint-form>
+          <input
+            class="hidden-field"
+            type="text"
+            name="website"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+          />
+
+          <label>
+            Categoria
+            <select name="category" required>
+              <option value="">Selecione</option>
+              <option>Erro no app</option>
+              <option>Problema com cadastro</option>
+              <option>Problema financeiro</option>
+              <option>Dificuldade de uso</option>
+              <option>Sugestao ou melhoria</option>
+              <option>Outro assunto</option>
+            </select>
+          </label>
+
+          <div class="form-grid">
+            <label>
+              Nome
+              <input name="name" type="text" autocomplete="name" />
+            </label>
+            <label>
+              E-mail
+              <input name="email" type="email" autocomplete="email" />
+            </label>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              Versao do app
+              <input name="appVersion" type="text" placeholder="Ex.: 1.0.3" />
+            </label>
+            <label>
+              Aparelho
+              <input name="device" type="text" placeholder="Ex.: Android 14" />
+            </label>
+          </div>
+
+          <label>
+            Reclamacao
+            <textarea
+              name="message"
+              rows="8"
+              minlength="10"
+              maxlength="2500"
+              required
+              placeholder="Descreva o problema com detalhes."
+            ></textarea>
+          </label>
+
+          <button class="btn-primary complaint-submit" type="submit">
+            <i class="ph-bold ph-paper-plane-tilt"></i>
+            Enviar reclamacao
+          </button>
+
+          <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <p>© <span id="anoAtual"></span> KORRE. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+    <script src="reclamacoes.js"></script>
+  </body>
+</html>
