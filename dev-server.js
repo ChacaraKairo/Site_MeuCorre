@@ -2,6 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const handler = require('./api/reclamacao.js');
+const netlifyHandler = require('./netlify/functions/reclamacao.js').handler;
 
 const root = __dirname;
 const port = Number(process.env.PORT || 3000);
@@ -84,6 +85,27 @@ loadEnv();
 const server = http.createServer((request, response) => {
   if (request.url.startsWith('/api/reclamacao')) {
     handler(request, response);
+    return;
+  }
+
+  if (request.url.startsWith('/.netlify/functions/reclamacao')) {
+    let body = '';
+
+    request.on('data', (chunk) => {
+      body += chunk;
+    });
+
+    request.on('end', async () => {
+      const result = await netlifyHandler({
+        body,
+        headers: request.headers,
+        httpMethod: request.method,
+      });
+
+      response.writeHead(result.statusCode, result.headers);
+      response.end(result.body);
+    });
+
     return;
   }
 

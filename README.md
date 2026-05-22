@@ -15,7 +15,8 @@ experiência simples, direta e profissional.
 - `index.html`: landing page principal do produto.
 - `privacidade.html`: política de privacidade pública.
 - `reclamacoes.html`: canal para usuarios enviarem reclamacoes do app.
-- `api/reclamacao.js`: funcao serverless que encaminha reclamacoes ao Telegram.
+- `api/reclamacao.js`: funcao serverless compatível com Vercel.
+- `netlify/functions/reclamacao.js`: funcao serverless compatível com Netlify.
 - `style.css`: identidade visual e componentes da página.
 - `script.js`: interações leves de ano dinâmico e reveal no scroll.
 
@@ -35,8 +36,9 @@ experiência simples, direta e profissional.
 ## Publicação
 
 O site principal é estático. Para o envio de reclamacoes ao Telegram funcionar,
-a hospedagem tambem precisa executar a funcao em `api/reclamacao.js`, como na
-Vercel.
+a hospedagem tambem precisa executar uma funcao serverless. Na Netlify, o
+arquivo `netlify.toml` redireciona `/api/reclamacao` para a funcao em
+`netlify/functions/reclamacao.js`.
 
 Variaveis necessarias no ambiente do servidor:
 
