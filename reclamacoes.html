@@ -1,14 +1,14 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Canal de reclamacoes do KORRE para usuarios enviarem problemas, erros e feedback diretamente para a equipe."
+      content="Canal de reclamacoes do KORRE para usuários enviarem problemas, erros e feedback diretamente para a equipe."
     />
     <meta name="theme-color" content="#0A0A0A" />
-    <title>Reclamacoes - KORRE</title>
+    <title>Reclamações - KORRE</title>
 
     <link rel="icon" href="assets/images/favicon.png" />
     <link rel="apple-touch-icon" href="assets/images/icon.png" />
@@ -23,12 +23,32 @@
   </head>
   <body>
     <header class="site-header">
-      <nav class="container nav-bar" aria-label="Navegacao principal">
-        <a href="index.html" class="brand">
+            <nav class="container nav-bar" aria-label="Navegação principal">
+        <a href="index.html#topo" class="brand" aria-label="KORRE, voltar ao início">
           <img src="assets/images/icon.png" alt="" class="brand-mark" />
           <span>KORRE</span>
         </a>
-        <a href="index.html" class="btn-secondary">Voltar ao inicio</a>
+
+        <div class="nav-links" aria-label="Seções do site">
+          <a href="index.html#para-quem">Para quem é</a>
+          <a href="index.html#funcionalidades">Funcionalidades</a>
+          <a href="index.html#telas">Telas</a>
+          <a href="reclamacoes.html">Reclamações</a>
+          <a href="comunidade-veiculos.html">Comunidade de veículos</a>
+          <a href="#" data-whatsapp-message="Olá! Quero falar com a equipe do KORRE." class="btn-primary btn-small nav-whatsapp">WhatsApp</a>
+          <a href="index.html#faq">FAQ</a>
+        </div>
+
+        <a
+          href="#"
+          data-config-link="playStoreUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary btn-small"
+        >
+          <i class="ph-fill ph-google-play-logo"></i>
+          Baixar
+        </a>
       </nav>
     </header>
 
@@ -82,7 +102,7 @@
 
           <div class="form-grid">
             <label>
-              Versao do app
+              Versão do app
               <input name="appVersion" type="text" placeholder="Ex.: 1.0.3" />
             </label>
             <label>
@@ -92,7 +112,7 @@
           </div>
 
           <label>
-            Reclamacao
+            Reclamação
             <textarea
               name="message"
               rows="8"
@@ -124,3 +144,7 @@
     <script src="reclamacoes.js"></script>
   </body>
 </html>
+
+
+
+

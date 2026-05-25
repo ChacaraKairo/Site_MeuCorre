@@ -36,17 +36,17 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!response.ok) {
         if (response.status === 404) {
           throw new Error(
-            'API nao encontrada. Abra o site por um servidor que rode /api/reclamacao.',
+            'API não encontrada. Abra o site por um servidor que rode /api/reclamacao.',
           );
         }
 
         throw new Error(
-          data.error || `Nao foi possivel enviar. Status ${response.status}.`,
+          data.error || `Não foi possivel enviar. Status ${response.status}.`,
         );
       }
 
       form.reset();
-      setStatus('Reclamacao enviada. Obrigado por avisar a equipe.', 'success');
+      setStatus('Reclamação enviada. Obrigado por avisar a equipe.', 'success');
     } catch (error) {
       if (error instanceof TypeError) {
         setStatus(
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
-      setStatus(error.message || 'Nao foi possivel enviar agora.', 'error');
+      setStatus(error.message || 'Não foi possivel enviar agora.', 'error');
     } finally {
       submitButton.disabled = false;
     }

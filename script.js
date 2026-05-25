@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+﻿document.addEventListener('DOMContentLoaded', function () {
   const config = window.KORRE_CONFIG || {};
 
   function setLink(element, url) {
@@ -9,6 +9,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     element.hidden = false;
     element.href = url;
+  }
+
+  function buildWhatsAppLink(rawNumber, message) {
+    if (!rawNumber) return '';
+    const clean = String(rawNumber).replace(/\D/g, '');
+    if (!clean) return '';
+    const text = encodeURIComponent(message || 'Olá! Quero falar sobre o app KORRE.');
+    return 'https://wa.me/' + clean + '?text=' + text;
   }
 
   function applyEditableConfig() {
@@ -24,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
       companySiteUrl: company.siteUrl,
       email: contact.email ? 'mailto:' + contact.email : '',
       phone: contact.phoneRaw ? 'tel:' + contact.phoneRaw : '',
-      whatsapp: contact.whatsappRaw ? 'https://wa.me/' + contact.whatsappRaw : '',
+      whatsapp: contact.whatsappRaw ? buildWhatsAppLink(contact.whatsappRaw, 'Olá! Quero falar com a equipe do KORRE.') : '',
       instagram: social.instagram,
       facebook: social.facebook,
       tiktok: social.tiktok,
@@ -56,9 +64,54 @@ document.addEventListener('DOMContentLoaded', function () {
         element.textContent = value;
       }
     });
+
+    document.querySelectorAll('[data-whatsapp-message]').forEach(function (element) {
+      const message = element.getAttribute('data-whatsapp-message') || 'Olá! Quero falar com a equipe do KORRE.';
+      const link = buildWhatsAppLink(contact.whatsappRaw, message);
+      setLink(element, link);
+      element.target = '_blank';
+      element.rel = 'noopener noreferrer';
+    });
+  }
+
+  async function shareApp() {
+    const app = config.app || {};
+    const url = app.playStoreUrl || window.location.href;
+    const payload = {
+      title: 'KORRE',
+      text: 'Conheça o KORRE e transforme cada corrida em número claro.',
+      url: url,
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(payload);
+        return;
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(url);
+        window.alert('Link copiado para a área de transferência.');
+        return;
+      }
+
+      window.prompt('Copie o link do KORRE:', url);
+    } catch (error) {
+      // Usuário pode cancelar o share sem ser erro real.
+    }
+  }
+
+  function setupShareButtons() {
+    document.querySelectorAll('[data-share-app]').forEach(function (button) {
+      button.addEventListener('click', function (event) {
+        event.preventDefault();
+        shareApp();
+      });
+    });
   }
 
   applyEditableConfig();
+  setupShareButtons();
 
   const anoAtualSpan = document.getElementById('anoAtual');
   if (anoAtualSpan) {
