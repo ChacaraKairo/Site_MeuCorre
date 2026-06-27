@@ -1,3 +1,9 @@
+const {
+  databaseConfigured,
+  metadataFromHeaders,
+  saveComplaint,
+} = require('../lib/form-storage');
+
 function json(response, statusCode, data) {
   response.statusCode = statusCode;
   response.setHeader('Content-Type', 'application/json; charset=utf-8');
@@ -64,20 +70,36 @@ function buildMessage(body, request) {
   ].join('\n');
 }
 
-module.exports = async function handler(request, response) {
-  if (request.method !== 'POST') {
-    response.setHeader('Allow', 'POST');
-    json(response, 405, { error: 'Metodo nao permitido.' });
-    return;
-  }
-
+async function notifyTelegram(body, request) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
 
   if (!token || !chatId) {
-    json(response, 500, {
-      error: 'Telegram nao configurado no servidor.',
-    });
+    return { configured: false };
+  }
+
+  const telegramResponse = await fetch(
+    `https://api.telegram.org/bot${token}/sendMessage`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: buildMessage(body, request),
+        disable_web_page_preview: true,
+      }),
+    },
+  );
+
+  return { configured: true, ok: telegramResponse.ok };
+}
+
+module.exports = async function handler(request, response) {
+  if (request.method !== 'POST') {
+    response.setHeader('Allow', 'POST');
+    json(response, 405, { error: 'Metodo nao permitido.' });
     return;
   }
 
@@ -97,32 +119,30 @@ module.exports = async function handler(request, response) {
       return;
     }
 
-    const telegramResponse = await fetch(
-      `https://api.telegram.org/bot${token}/sendMessage`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: buildMessage(body, request),
-          disable_web_page_preview: true,
-        }),
-      },
-    );
+    const dbEnabled = databaseConfigured();
+    const telegramEnabled = Boolean(process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID);
 
-    if (!telegramResponse.ok) {
-      json(response, 502, {
-        error: 'Nao foi possivel enviar para o Telegram.',
-      });
+    if (!dbEnabled && !telegramEnabled) {
+      json(response, 500, { error: 'Nenhum destino configurado para receber a reclamacao.' });
       return;
     }
 
-    json(response, 200, { ok: true });
-  } catch (error) {
-    json(response, 500, {
-      error: 'Erro inesperado ao enviar a reclamacao.',
+    const savedId = dbEnabled
+      ? await saveComplaint(body, metadataFromHeaders(request.headers))
+      : null;
+    const telegram = await notifyTelegram(body, request);
+
+    if (telegram.configured && !telegram.ok && !savedId) {
+      json(response, 502, { error: 'Nao foi possivel enviar para o Telegram.' });
+      return;
+    }
+
+    json(response, 200, {
+      ok: true,
+      id: savedId,
+      telegram: telegram.configured ? telegram.ok : null,
     });
+  } catch (error) {
+    json(response, 500, { error: 'Erro inesperado ao salvar a reclamacao.' });
   }
 };

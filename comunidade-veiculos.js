@@ -280,7 +280,8 @@ document.addEventListener('DOMContentLoaded', function () {
       return null;
     }
 
-    const normalized = String(value).replace(/\./g, '').replace(',', '.');
+    const raw = String(value).trim();
+    const normalized = raw.includes(',') ? raw.replace(/\./g, '').replace(',', '.') : raw;
     const num = Number(normalized);
     return Number.isFinite(num) ? num : null;
   }

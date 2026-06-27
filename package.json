@@ -1,0 +1,13 @@
+{
+  "name": "site-meucorre",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site oficial do KORRE com funcoes serverless opcionais para formularios.",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "check": "node --check dev-server.js && node --check api/reclamacao.js && node --check api/sugestao-veiculo.js && node --check netlify/functions/reclamacao.js && node --check netlify/functions/sugestao-veiculo.js && node --check lib/form-storage.js"
+  },
+  "dependencies": {
+    "pg": "^8.13.1"
+  }
+}

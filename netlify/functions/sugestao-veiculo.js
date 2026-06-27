@@ -1,3 +1,9 @@
+const {
+  databaseConfigured,
+  metadataFromHeaders,
+  saveVehicleSuggestion,
+} = require('../../lib/form-storage');
+
 function response(statusCode, data) {
   return {
     statusCode,
@@ -47,16 +53,35 @@ function buildMessage(body, event) {
   ].join('\n');
 }
 
-exports.handler = async function handler(event) {
-  if (event.httpMethod !== 'POST') {
-    return response(405, { error: 'Metodo nao permitido.' });
-  }
-
+async function notifyTelegram(body, event) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
 
   if (!token || !chatId) {
-    return response(500, { error: 'Telegram nao configurado no servidor.' });
+    return { configured: false };
+  }
+
+  const telegramResponse = await fetch(
+    `https://api.telegram.org/bot${token}/sendMessage`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: buildMessage(body, event),
+        disable_web_page_preview: true,
+      }),
+    },
+  );
+
+  return { configured: true, ok: telegramResponse.ok };
+}
+
+exports.handler = async function handler(event) {
+  if (event.httpMethod !== 'POST') {
+    return response(405, { error: 'Metodo nao permitido.' });
   }
 
   try {
@@ -78,27 +103,28 @@ exports.handler = async function handler(event) {
       return response(400, { error: 'Observacoes muito curtas.' });
     }
 
-    const telegramResponse = await fetch(
-      `https://api.telegram.org/bot${token}/sendMessage`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: buildMessage(body, event),
-          disable_web_page_preview: true,
-        }),
-      },
-    );
+    const dbEnabled = databaseConfigured();
+    const telegramEnabled = Boolean(process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID);
 
-    if (!telegramResponse.ok) {
+    if (!dbEnabled && !telegramEnabled) {
+      return response(500, { error: 'Nenhum destino configurado para receber a sugestao.' });
+    }
+
+    const savedId = dbEnabled
+      ? await saveVehicleSuggestion(body, metadataFromHeaders(event.headers || {}))
+      : null;
+    const telegram = await notifyTelegram(body, event);
+
+    if (telegram.configured && !telegram.ok && !savedId) {
       return response(502, { error: 'Nao foi possivel enviar para o Telegram.' });
     }
 
-    return response(200, { ok: true });
+    return response(200, {
+      ok: true,
+      id: savedId,
+      telegram: telegram.configured ? telegram.ok : null,
+    });
   } catch (error) {
-    return response(500, { error: 'Erro inesperado ao enviar sugestao.' });
+    return response(500, { error: 'Erro inesperado ao salvar sugestao.' });
   }
 };
