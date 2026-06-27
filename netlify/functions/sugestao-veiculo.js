@@ -1,7 +1,11 @@
-﻿function json(response, statusCode, data) {
-  response.statusCode = statusCode;
-  response.setHeader('Content-Type', 'application/json; charset=utf-8');
-  response.end(JSON.stringify(data));
+function response(statusCode, data) {
+  return {
+    statusCode,
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    body: JSON.stringify(data),
+  };
 }
 
 function clean(value, limit) {
@@ -11,36 +15,7 @@ function clean(value, limit) {
     .slice(0, limit);
 }
 
-function readBody(request) {
-  if (request.body && typeof request.body === 'object') {
-    return Promise.resolve(request.body);
-  }
-
-  return new Promise((resolve, reject) => {
-    let data = '';
-
-    request.on('data', (chunk) => {
-      data += chunk;
-    });
-
-    request.on('end', () => {
-      if (!data) {
-        resolve({});
-        return;
-      }
-
-      try {
-        resolve(JSON.parse(data));
-      } catch (error) {
-        reject(error);
-      }
-    });
-
-    request.on('error', reject);
-  });
-}
-
-function buildMessage(body, request) {
+function buildMessage(body, event) {
   const tipo = clean(body.tipo, 40);
   const marca = clean(body.marca, 60);
   const modelo = clean(body.modelo, 80);
@@ -50,7 +25,7 @@ function buildMessage(body, request) {
   const nome = clean(body.contribuidor_nome, 80) || 'Nao informado';
   const email = clean(body.contribuidor_email, 120) || 'Nao informado';
   const obs = clean(body.observacoes, 3000);
-  const page = request.headers.referer || 'Nao informado';
+  const page = event.headers.referer || event.headers.referrer || 'Nao informado';
   const parametros = JSON.stringify(body.parametros_financeiros || {}, null, 2).slice(0, 3500);
 
   return [
@@ -72,42 +47,35 @@ function buildMessage(body, request) {
   ].join('\n');
 }
 
-module.exports = async function handler(request, response) {
-  if (request.method !== 'POST') {
-    response.setHeader('Allow', 'POST');
-    json(response, 405, { error: 'Metodo nao permitido.' });
-    return;
+exports.handler = async function handler(event) {
+  if (event.httpMethod !== 'POST') {
+    return response(405, { error: 'Metodo nao permitido.' });
   }
 
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
 
   if (!token || !chatId) {
-    json(response, 500, { error: 'Telegram nao configurado no servidor.' });
-    return;
+    return response(500, { error: 'Telegram nao configurado no servidor.' });
   }
 
   try {
-    const body = await readBody(request);
+    const body = event.body ? JSON.parse(event.body) : {};
 
     if (body.website) {
-      json(response, 200, { ok: true });
-      return;
+      return response(200, { ok: true });
     }
 
     if (!clean(body.tipo, 40) || !clean(body.marca, 60) || !clean(body.modelo, 80)) {
-      json(response, 400, { error: 'Tipo, marca e modelo sao obrigatorios.' });
-      return;
+      return response(400, { error: 'Tipo, marca e modelo sao obrigatorios.' });
     }
 
     if (Number(body.consumo_medio) <= 0) {
-      json(response, 400, { error: 'Consumo medio invalido.' });
-      return;
+      return response(400, { error: 'Consumo medio invalido.' });
     }
 
     if (clean(body.observacoes, 3000).length < 10) {
-      json(response, 400, { error: 'Observacoes muito curtas.' });
-      return;
+      return response(400, { error: 'Observacoes muito curtas.' });
     }
 
     const telegramResponse = await fetch(
@@ -119,19 +87,18 @@ module.exports = async function handler(request, response) {
         },
         body: JSON.stringify({
           chat_id: chatId,
-          text: buildMessage(body, request),
+          text: buildMessage(body, event),
           disable_web_page_preview: true,
         }),
       },
     );
 
     if (!telegramResponse.ok) {
-      json(response, 502, { error: 'Nao foi possivel enviar para o Telegram.' });
-      return;
+      return response(502, { error: 'Nao foi possivel enviar para o Telegram.' });
     }
 
-    json(response, 200, { ok: true });
+    return response(200, { ok: true });
   } catch (error) {
-    json(response, 500, { error: 'Erro inesperado ao enviar sugestao.' });
+    return response(500, { error: 'Erro inesperado ao enviar sugestao.' });
   }
 };

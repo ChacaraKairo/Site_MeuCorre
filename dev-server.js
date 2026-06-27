@@ -1,8 +1,10 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const handler = require('./api/reclamacao.js');
-const netlifyHandler = require('./netlify/functions/reclamacao.js').handler;
+const reclamacaoHandler = require('./api/reclamacao.js');
+const sugestaoVeiculoHandler = require('./api/sugestao-veiculo.js');
+const netlifyReclamacaoHandler = require('./netlify/functions/reclamacao.js').handler;
+const netlifySugestaoVeiculoHandler = require('./netlify/functions/sugestao-veiculo.js').handler;
 
 const root = __dirname;
 const port = Number(process.env.PORT || 3000);
@@ -84,12 +86,23 @@ loadEnv();
 
 const server = http.createServer((request, response) => {
   if (request.url.startsWith('/api/reclamacao')) {
-    handler(request, response);
+    reclamacaoHandler(request, response);
     return;
   }
 
-  if (request.url.startsWith('/.netlify/functions/reclamacao')) {
+  if (request.url.startsWith('/api/sugestao-veiculo')) {
+    sugestaoVeiculoHandler(request, response);
+    return;
+  }
+
+  if (
+    request.url.startsWith('/.netlify/functions/reclamacao') ||
+    request.url.startsWith('/.netlify/functions/sugestao-veiculo')
+  ) {
     let body = '';
+    const netlifyHandler = request.url.startsWith('/.netlify/functions/sugestao-veiculo')
+      ? netlifySugestaoVeiculoHandler
+      : netlifyReclamacaoHandler;
 
     request.on('data', (chunk) => {
       body += chunk;

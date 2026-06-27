@@ -6,3 +6,8 @@
   from = "/api/reclamacao"
   to = "/.netlify/functions/reclamacao"
   status = 200
+
+[[redirects]]
+  from = "/api/sugestao-veiculo"
+  to = "/.netlify/functions/sugestao-veiculo"
+  status = 200

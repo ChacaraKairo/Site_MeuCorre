@@ -66,129 +66,175 @@
           </p>
         </div>
 
-        <form class="complaint-form" data-community-vehicle-form>
+        <form class="complaint-form community-vehicle-form" data-community-vehicle-form novalidate>
           <input class="hidden-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
-          <h2 class="community-title">Dados do veiculo</h2>
-          <div class="form-grid">
+          <div class="community-progress" aria-label="Progresso do formulario">
+            <div class="community-progress-top">
+              <span data-step-label>Etapa 1 de 4</span>
+              <strong data-progress-percent>25%</strong>
+            </div>
+            <div class="community-progress-track" aria-hidden="true">
+              <span data-progress-bar></span>
+            </div>
+          </div>
+
+          <div class="community-step is-active" data-form-step="1">
+            <h2 class="community-title">Dados do veiculo</h2>
+            <p class="community-note">Comece com as informacoes essenciais para identificar o modelo.</p>
+
             <label>
               Tipo
-              <select name="tipo" required>
+              <select name="tipo" required aria-describedby="tipo-error">
                 <option value="">Selecione</option>
                 <option value="moto">Moto</option>
                 <option value="carro">Carro</option>
                 <option value="bicicleta">Bicicleta</option>
                 <option value="van">Van</option>
-                <option value="carro_elétrico">Carro elétrico</option>
+                <option value="carro_eletrico">Carro eletrico</option>
               </select>
+              <span class="field-feedback" id="tipo-error" data-field-error="tipo"></span>
             </label>
+
             <label>
               Marca
-              <input name="marca" type="text" required placeholder="Ex: Honda" />
+              <input name="marca" type="text" required autocomplete="organization" placeholder="Ex: Honda" aria-describedby="marca-error" />
+              <span class="field-feedback" id="marca-error" data-field-error="marca"></span>
             </label>
-          </div>
 
-          <div class="form-grid">
             <label>
               Modelo
-              <input name="modelo" type="text" required placeholder="Ex: CG Titan" />
+              <input name="modelo" type="text" required autocomplete="off" placeholder="Ex: CG Titan" aria-describedby="modelo-error" />
+              <span class="field-feedback" id="modelo-error" data-field-error="modelo"></span>
             </label>
-            <label>
-              Motor / Versão
-              <input name="motor" type="text" placeholder="Ex: 160 CC" />
-            </label>
-          </div>
 
-          <div class="form-grid">
             <label>
-              Ano
-              <input name="ano" type="number" min="1950" max="2100" placeholder="Ex: 2022" />
+              Motor / versao <span>(opcional)</span>
+              <input name="motor" type="text" autocomplete="off" placeholder="Ex: 160 CC" />
             </label>
+
+            <label>
+              Ano <span>(opcional)</span>
+              <input name="ano" type="number" inputmode="numeric" min="1950" max="2100" placeholder="Ex: 2022" aria-describedby="ano-error" />
+              <span class="field-feedback" id="ano-error" data-field-error="ano"></span>
+            </label>
+
             <label>
               Consumo medio (km/l ou km/kWh)
-              <input name="consumo_medio" type="number" step="0.01" min="0" required placeholder="Ex: 31.5" />
+              <input name="consumo_medio" type="number" inputmode="decimal" step="0.01" min="0" required placeholder="Ex: 31,5" aria-describedby="consumo_medio-error" />
+              <span class="field-feedback" id="consumo_medio-error" data-field-error="consumo_medio"></span>
             </label>
           </div>
 
-          <h2 class="community-title">Manutencao base</h2>
-          <div class="form-grid">
+          <div class="community-step" data-form-step="2" hidden>
+            <h2 class="community-title">Manutencao base</h2>
+            <p class="community-note">Valores aproximados ajudam o KORRE a sugerir custos mais realistas.</p>
+
             <label>
-              Troca de oleo e filtros (R$)
-              <input name="valor_oleo_filtros" type="number" step="0.01" min="0" placeholder="Ex: 180" />
+              Troca de oleo e filtros (R$) <span>(opcional)</span>
+              <input name="valor_oleo_filtros" type="number" inputmode="decimal" step="0.01" min="0" placeholder="Ex: 180" />
             </label>
+
             <label>
-              Intervalo oleo e filtros (km)
-              <input name="intervalo_oleo_filtros_km" type="number" step="1" min="0" placeholder="Ex: 5000" />
+              Intervalo oleo e filtros (km) <span>(opcional)</span>
+              <input name="intervalo_oleo_filtros_km" type="number" inputmode="numeric" step="1" min="0" placeholder="Ex: 5000" />
+            </label>
+
+            <label>
+              Valor jogo de pneus (R$) <span>(opcional)</span>
+              <input name="valor_jogo_pneus" type="number" inputmode="decimal" step="0.01" min="0" placeholder="Ex: 850" />
+            </label>
+
+            <label>
+              Durabilidade pneus (km) <span>(opcional)</span>
+              <input name="durabilidade_pneus_km" type="number" inputmode="numeric" step="1" min="0" placeholder="Ex: 35000" />
+            </label>
+
+            <label>
+              Valor manutencao freios (R$) <span>(opcional)</span>
+              <input name="valor_manutenção_freios" type="number" inputmode="decimal" step="0.01" min="0" placeholder="Ex: 400" />
+            </label>
+
+            <label>
+              Intervalo freios (km) <span>(opcional)</span>
+              <input name="intervalo_freios_km" type="number" inputmode="numeric" step="1" min="0" placeholder="Ex: 25000" />
+            </label>
+
+            <label>
+              Valor kit transmissao (R$) <span>(opcional)</span>
+              <input name="valor_kit_transmissao" type="number" inputmode="decimal" step="0.01" min="0" placeholder="Ex: 520" />
+            </label>
+
+            <label>
+              Durabilidade transmissao (km) <span>(opcional)</span>
+              <input name="durabilidade_transmissao_km" type="number" inputmode="numeric" step="1" min="0" placeholder="Ex: 22000" />
             </label>
           </div>
 
-          <div class="form-grid">
-            <label>
-              Valor jogo de pneus (R$)
-              <input name="valor_jogo_pneus" type="number" step="0.01" min="0" placeholder="Ex: 850" />
-            </label>
-            <label>
-              Durabilidade pneus (km)
-              <input name="durabilidade_pneus_km" type="number" step="1" min="0" placeholder="Ex: 35000" />
-            </label>
+          <div class="community-step" data-form-step="3" hidden>
+            <h2 class="community-title">Dados padrao do app</h2>
+            <p class="community-note">Informe apenas referencias reutilizaveis do veiculo. Dados pessoais e rotina de trabalho ficam fora desta etapa.</p>
+            <div class="community-fields-grid" data-community-fields></div>
           </div>
 
-          <div class="form-grid">
+          <div class="community-step" data-form-step="4" hidden>
+            <h2 class="community-title">Contribuidor</h2>
+            <p class="community-note">Conte a origem dos dados e aceite o uso da contribuicao na base comunitaria.</p>
+
             <label>
-              Valor manutenção freios (R$)
-              <input name="valor_manutenção_freios" type="number" step="0.01" min="0" placeholder="Ex: 400" />
+              Nome <span>(opcional)</span>
+              <input name="contribuidor_nome" type="text" autocomplete="name" placeholder="Ex: Ana Souza" />
             </label>
+
             <label>
-              Intervalo freios (km)
-              <input name="intervalo_freios_km" type="number" step="1" min="0" placeholder="Ex: 25000" />
+              E-mail <span>(opcional)</span>
+              <input name="contribuidor_email" type="email" inputmode="email" autocomplete="email" placeholder="Ex: ana@email.com" aria-describedby="contribuidor_email-error" />
+              <span class="field-feedback" id="contribuidor_email-error" data-field-error="contribuidor_email"></span>
             </label>
+
+            <label>
+              Observacoes
+              <textarea
+                name="observacoes"
+                rows="6"
+                minlength="10"
+                maxlength="3000"
+                required
+                placeholder="Ex: uso em Sao Paulo, entrega urbana, revisoes em oficina independente."
+                aria-describedby="observacoes-error"
+              ></textarea>
+              <span class="field-feedback" id="observacoes-error" data-field-error="observacoes"></span>
+            </label>
+
+            <label class="checkbox-field">
+              <input name="lgpd_consent" type="checkbox" required aria-describedby="lgpd_consent-error" />
+              <span>Autorizo o KORRE a usar esta contribuicao para melhorar a base comunitaria de veiculos, conforme a politica de privacidade.</span>
+            </label>
+            <span class="field-feedback" id="lgpd_consent-error" data-field-error="lgpd_consent"></span>
           </div>
 
-          <div class="form-grid">
-            <label>
-              Valor kit transmissao (R$)
-              <input name="valor_kit_transmissao" type="number" step="0.01" min="0" placeholder="Ex: 520" />
-            </label>
-            <label>
-              Durabilidade transmissao (km)
-              <input name="durabilidade_transmissao_km" type="number" step="1" min="0" placeholder="Ex: 22000" />
-            </label>
+          <div class="community-actions">
+            <button class="btn-secondary community-back" type="button" data-step-back hidden>
+              <i class="ph-bold ph-arrow-left"></i>
+              Voltar
+            </button>
+            <button class="btn-primary complaint-submit" type="button" data-step-next>
+              Continuar
+              <i class="ph-bold ph-arrow-right"></i>
+            </button>
+            <button class="btn-primary complaint-submit" type="submit" data-submit-button hidden disabled>
+              <i class="ph-bold ph-paper-plane-tilt"></i>
+              Enviar sugestao de veiculo
+            </button>
           </div>
-
-          <h2 class="community-title">Parametros completos do app</h2>
-          <div class="community-note">Preencha o maximo que conseguir. Campos vazios ficam como sugestão parcial.</div>
-          <div class="community-fields-grid" data-community-fields></div>
-
-          <h2 class="community-title">Contribuidor</h2>
-          <div class="form-grid">
-            <label>
-              Nome (opcional)
-              <input name="contribuidor_nome" type="text" autocomplete="name" />
-            </label>
-            <label>
-              E-mail (opcional)
-              <input name="contribuidor_email" type="email" autocomplete="email" />
-            </label>
-          </div>
-
-          <label>
-            Observacoes
-            <textarea
-              name="observacoes"
-              rows="6"
-              minlength="10"
-              maxlength="3000"
-              required
-              placeholder="Inclua detalhes importantes sobre uso real, cidade/estado, tipo de rodagem e qualquer ajuste recomendado."
-            ></textarea>
-          </label>
-
-          <button class="btn-primary complaint-submit" type="submit">
-            <i class="ph-bold ph-paper-plane-tilt"></i>
-            Enviar sugestão de veiculo
-          </button>
 
           <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+
+          <div class="community-success" data-success-panel hidden tabindex="-1">
+            <i class="ph-fill ph-check-circle"></i>
+            <h2>Sugestao enviada.</h2>
+            <p>Obrigado por fortalecer a base comunitaria do KORRE.</p>
+          </div>
         </form>
       </section>
     </main>
@@ -204,8 +250,6 @@
     <script src="comunidade-veiculos.js"></script>
   </body>
 </html>
-
-
 
 
 
